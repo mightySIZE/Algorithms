@@ -7,9 +7,9 @@ void print(int[], int);
 
 int main() {
     int size;
-    cin >> size;                // Enter the size of the unsorted array
+    cin >> size;
     int arrA[size];
-    for (int i=0; i<size; i++)  // Enter the elements of the unsroted array
+    for (int i=0; i<size; i++)
         cin >> arrA[i];
 
     mergeSort(arrA, 0, size-1);
