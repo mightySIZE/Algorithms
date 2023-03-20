@@ -6,9 +6,9 @@ void print(int[], int, int);
 
 int main() {
     int size;
-    cin >> size;                // Enter the size of the array to be sorted
+    cin >> size;
     int arr[size];
-    for (int i=0; i<size; i++)  // Enter elements of the array to be sorted
+    for (int i=0; i<size; i++)
         cin >> arr[i];
 
     insertionSort(arr, size);
