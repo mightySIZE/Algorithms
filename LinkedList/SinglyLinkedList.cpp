@@ -28,7 +28,7 @@ class SinglyLinkedList {
         }
     public:
         // Insert a node at the beginning of the list
-        void insert(int value) {
+        void insertAtStart(int value) {
             Node* newNode = new Node(value);
             if (head == nullptr)
                 head = newNode;
@@ -36,6 +36,16 @@ class SinglyLinkedList {
                 newNode->next = head;
                 head = newNode;
             }
+        }
+
+        // Insert a node at the end of the list
+        void insertAtEnd(int value) {
+            Node* traverse = head;
+            Node* newNode = new Node(value);
+            while (traverse->next != nullptr) {
+                traverse = traverse->next;
+            }
+            traverse->next = newNode;
         }
 
         // Print the linked list
@@ -50,21 +60,21 @@ class SinglyLinkedList {
 
 };
 
-
-
-
-
-
 int main()
 {
     // Create a linked list object
     SinglyLinkedList myList;
 
     // Insert nodes into the list
-    myList.insert(5);
-    myList.insert(10);
-    myList.insert(15);
-    myList.insert(20);
+    myList.insertAtStart(5);
+    myList.insertAtStart(10);
+    myList.insertAtStart(15);
+    myList.insertAtStart(20);
+
+    myList.insertAtEnd(25);
+    myList.insertAtEnd(30);
+    myList.insertAtEnd(35);
+    myList.insertAtEnd(40);
 
     // Print the list
     myList.printList();
