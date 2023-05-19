@@ -1,35 +1,40 @@
 #include <iostream>
 using namespace std;
 
-// Linked List example with 1 class
-
-class SinglyLinkedList {
+class Node {
     public:
-        class Node {
-        public:
-            int data;
-            Node* next;
-            
-            Node(int value) {
-                data = value;
-                next = nullptr;
-            }
-        };
+        int data;
+        Node* prev;
+        Node* next;
 
+        Node(int data=-1, Node* prev=nullptr, Node* next=nullptr) {
+            this->data = data;
+            this->prev = prev;
+            this->next = next;
+        }
+};
+
+class DoublyLinkedList {
+    public:
         Node* head;
+        Node* tail;
 
     public:
-        SinglyLinkedList() {
+        DoublyLinkedList() {
             head = nullptr;
+            tail = nullptr;
         }
 
         // Insert a node at the beginning of the list
         void insertAtStart(int value) {
             Node* newNode = new Node(value);
-            if (head == nullptr)
+            if (head == nullptr) {
                 head = newNode;
+                tail = newNode;
+            }
             else {
                 newNode->next = head;
+                head->prev = newNode;
                 head = newNode;
             }
         }
@@ -39,21 +44,30 @@ class SinglyLinkedList {
             Node* newNode = new Node(value);
             if (head == nullptr) {
                 head = newNode;
+                tail = newNode;
             } else {
-                Node* traverse = head;
-                while (traverse->next != nullptr) {
-                    traverse = traverse->next;
-                }
-                traverse->next = newNode;
+                newNode->prev = tail;
+                tail->next = newNode;
+                tail = newNode;
             }
         }
 
-        // Print the linked list
-        void printList() {
+        // Print the linked list forward
+        void printForward() {
             Node* current = head;
             while (current != nullptr) {
                 cout << current->data << "->";
                 current = current->next;
+            }
+            cout << endl;
+        }
+
+        // Print the linked list backward
+        void printBackward() {
+            Node* current = tail;
+            while (current != nullptr) {
+                cout << current->data << "->";
+                current = current->prev;
             }
             cout << endl;
         }
@@ -63,7 +77,7 @@ class SinglyLinkedList {
 int main()
 {
     // Create a linked list object
-    SinglyLinkedList myList;
+    DoublyLinkedList myList;
 
     // Insert nodes into the list
     myList.insertAtStart(5);
@@ -77,6 +91,8 @@ int main()
     myList.insertAtEnd(40);
 
     // Print the list
-    myList.printList();
+    myList.printForward();
+    myList.printBackward();
+
     return 0;
 }

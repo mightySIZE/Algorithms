@@ -23,10 +23,11 @@ class Node {
 class SinglyLinkedList {
     public:
         Node* head;
+
+    public:
         SinglyLinkedList() {
             head = nullptr;
         }
-    public:
         // Insert a node at the beginning of the list
         void insertAtStart(int value) {
             Node* newNode = new Node(value);
@@ -40,12 +41,16 @@ class SinglyLinkedList {
 
         // Insert a node at the end of the list
         void insertAtEnd(int value) {
-            Node* traverse = head;
             Node* newNode = new Node(value);
-            while (traverse->next != nullptr) {
-                traverse = traverse->next;
+            if (head == nullptr) {
+                head = newNode;
+            } else {
+                Node* traverse = head;
+                while (traverse->next != nullptr) {
+                    traverse = traverse->next;
+                }
+                traverse->next = newNode;
             }
-            traverse->next = newNode;
         }
 
         // Print the linked list
