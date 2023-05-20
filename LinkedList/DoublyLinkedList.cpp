@@ -33,9 +33,9 @@ class DoublyLinkedList {
                 tail = newNode;
             }
             else {
-                newNode->next = head;
-                head->prev = newNode;
-                head = newNode;
+                newNode->next = head; // this will be the new head
+                head->prev = newNode; // the old head's prev will be the new head
+                head = newNode; // the new head is the new node
             }
         }
 
@@ -46,9 +46,9 @@ class DoublyLinkedList {
                 head = newNode;
                 tail = newNode;
             } else {
-                newNode->prev = tail;
-                tail->next = newNode;
-                tail = newNode;
+                newNode->prev = tail; // this will be the new tail
+                tail->next = newNode; // the old tail's next will be the new tail
+                tail = newNode; // the new tail is the new node
             }
         }
 
